@@ -1,15 +1,13 @@
 # E-Commerce Data Engineering Pipeline
 
-A data engineering project that collects e-commerce data from an external API, processes and validates the data, and stores it in a structured PostgreSQL database for analytics.
+A data engineering portfolio project that collects e-commerce product data from a public API, prepares it for ingestion, stores raw data in Amazon S3, and loads structured records into Amazon Redshift for analytics.
 
 ## Tech Stack
 
-* Python
-* PostgreSQL
-* SQL
-* dbt
-* Apache Airflow
-* Git/GitHub
+* Python – API ingestion and data preparation
+* Amazon S3 – Cloud object storage for raw and prepared data
+* Amazon Redshift Serverless – Cloud data warehouse
+* SQL – Data loading, validation, and troubleshooting
 
 ## Pipeline
 
@@ -18,13 +16,11 @@ External API
     ↓
 Data Ingestion
     ↓
-Raw Data
+Raw Data Storage
     ↓
-Data Validation
+Data Processing
     ↓
-Transformation
-    ↓
-PostgreSQL Data Warehouse
+Data Warehouse
     ↓
 Analytics-Ready Data
 ```
