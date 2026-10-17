@@ -11,3 +11,16 @@ __pycache__/
 
 # Secrets
 .env
+.env.*
+
+# AWS credentials
+.aws/
+
+# dbt generated files
+**/logs/
+**/target/
+**/dbt_packages/
+**/partial_parse.msgpack
+
+# Local Python environments
+.venv/
