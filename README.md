@@ -8,6 +8,7 @@ A data engineering portfolio project that collects e-commerce product data from 
 * Amazon S3 – Cloud object storage for raw and prepared data
 * Amazon Redshift Serverless – Cloud data warehouse
 * SQL – Data loading, validation, and troubleshooting
+* dbt Core – SQL-based data transformation, data modeling, and testing
 
 ## Pipeline
 
