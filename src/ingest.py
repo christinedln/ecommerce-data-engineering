@@ -1,8 +1,10 @@
+
 import json
 import urllib.request
 
 OUTPUT_FILE = "data/raw_products.json"
 URL = "https://dummyjson.com/products?limit=0"
+
 
 def fetch_products():
     request = urllib.request.Request(
@@ -10,10 +12,21 @@ def fetch_products():
         headers={"User-Agent": "Mozilla/5.0"}
     )
 
-    response = urllib.request.urlopen(request)
-    data = json.loads(response.read())
+    with urllib.request.urlopen(request) as response:
+        data = json.loads(response.read())
 
-    return data["products"]
+    products = data["products"]
+    expected_count = data["total"]
+
+    if len(products) != expected_count:
+        raise ValueError(
+            f"Incomplete product fetch: expected {expected_count}, "
+            f"but received {len(products)}."
+        )
+
+    print(f"Fetched {len(products)} of {expected_count} products.")
+
+    return products
 
 
 def save_raw_data(products):
