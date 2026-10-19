@@ -1,0 +1,44 @@
+
+version: 2
+
+models:
+  - name: stg_raw_products
+    description: >
+      Staging view for product records from the DummyJSON API.
+      Trims text fields and converts blank title, category, and brand
+      values to NULL while preserving all source rows.
+    columns:
+      - name: product_id
+        description: "Unique identifier for each product."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: title
+        description: "Product title, trimmed and required."
+        data_tests:
+          - not_null
+
+      - name: category
+        description: "Product category, trimmed and required."
+        data_tests:
+          - not_null
+
+      - name: price
+        description: "Product price; must be non-negative."
+        data_tests:
+          - not_null
+
+      - name: stock
+        description: "Available stock quantity; must be non-negative."
+        data_tests:
+          - not_null
+
+      - name: rating
+        description: "Product rating, expected to be between 0 and 5."
+
+      - name: brand
+        description: "Product brand; NULL is allowed when the source has no brand."
+
+      - name: source_loaded_at
+        description: "Timestamp recorded when the source data was loaded."
