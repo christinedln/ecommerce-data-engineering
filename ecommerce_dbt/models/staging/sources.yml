@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: ecommerce
+    description: "Existing e-commerce product tables in Amazon Redshift."
+    schema: public
+    tables:
+      - name: raw_products
+        description: "Raw product records loaded from the DummyJSON API."
+
+      - name: clean_products
+        description: "Product records cleaned and prepared in Redshift"
