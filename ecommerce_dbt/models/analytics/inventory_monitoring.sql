@@ -7,6 +7,6 @@ SELECT
     CASE
         WHEN stock = 0 THEN 'out_of_stock'
         WHEN stock <= 5 THEN 'low_stock'
-        ELSE 'adequate stock'
+        ELSE 'adequate_stock'
     END AS inventory_attention
 FROM {{ ref('dim_products') }}

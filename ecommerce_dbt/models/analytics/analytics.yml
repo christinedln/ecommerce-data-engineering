@@ -1,0 +1,24 @@
+
+version: 2
+
+models:
+  - name: inventory_monitoring
+    description: >
+      Identifies products requiring inventory attention based on stock quantity.
+    columns:
+      - name: product_id
+        description: "Unique identifier for each product."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: inventory_attention
+        description: "Inventory classification based on stock quantity."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - out_of_stock
+                  - low_stock
+                  - adequate_stock
