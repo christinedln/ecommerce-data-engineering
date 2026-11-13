@@ -5,6 +5,7 @@ from airflow.sdk import dag, task, get_current_context
 
 from ecommerce.extract_products import extract_and_upload_products
 from ecommerce.load_to_redshift import load_products_to_redshift
+from ecommerce.run_dbt import run_dbt_build
 
 
 @dag(
@@ -31,10 +32,19 @@ def ecommerce_pipeline():
             normalized_s3_key=extraction_result["normalized_s3_key"],
             expected_record_count=extraction_result["record_count"],
         )
+    
+    @task
+    def transform_and_test():
+        run_dbt_build()
 
     extraction_result = extract_products()
 
-    load_products(extraction_result)
+    load_result = load_products(extraction_result)
+
+    dbt_result = transform_and_test()
+
+    load_result >> dbt_result
+
 
 
 ecommerce_pipeline()
