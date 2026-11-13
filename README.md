@@ -1,6 +1,6 @@
 # E-Commerce Data Engineering Pipeline
 
-A data engineering portfolio project that collects e-commerce product data from a public API, prepares it for ingestion, stores raw data in Amazon S3, and loads structured records into Amazon Redshift for analytics.
+A data engineering portfolio project that extracts e-commerce product data from a public API, stores raw and normalized data in Amazon S3, and loads structured records into Amazon Redshift Serverless for analytics. Apache Airflow orchestrates the pipeline, while dbt handles data transformations and quality testing.
 
 ## Tech Stack
 
@@ -9,19 +9,22 @@ A data engineering portfolio project that collects e-commerce product data from 
 * Amazon Redshift Serverless – Cloud data warehouse
 * SQL – Data loading, validation, and troubleshooting
 * dbt Core – SQL-based data transformation, data modeling, and testing
+* Apache Airflow (MWAA) – Workflow orchestration
 
 ## Pipeline
 
 ```text
-External API
+DummyJSON API
     ↓
-Data Ingestion
+Python Extraction and Normalization
     ↓
-Raw Data Storage
+Amazon S3
     ↓
-Data Processing
+Amazon Redshift Staging and Validation
     ↓
-Data Warehouse
+Incremental MERGE
+    ↓
+dbt Transformations and Tests
     ↓
 Analytics-Ready Data
 ```
@@ -29,3 +32,15 @@ Analytics-Ready Data
 ## Data Source
 
 Product data is collected from the public DummyJSON API and used for educational and portfolio purposes.
+
+## Testing
+
+* Successfully executed the end-to-end Airflow pipeline.
+* Passed all 18 dbt models and data quality tests.
+* Verified idempotent loading to prevent duplicate records.
+
+## Pipeline Execution
+
+The Airflow pipeline successfully completed all tasks.
+
+![Successful Airflow Pipeline Run](images/airflow_pipeline_success.png)
