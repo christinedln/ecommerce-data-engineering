@@ -1,0 +1,15 @@
+ecommerce_dbt:
+  target: dev
+
+  outputs:
+    dev:
+      type: redshift
+      method: iam_role
+
+      host: ecommerce-workgroup.878093321287.us-east-1.redshift-serverless.amazonaws.com
+      port: 5439
+      dbname: dev
+      schema: dbt_ecommerce
+
+      region: us-east-1
+      threads: 1
